@@ -1,0 +1,22 @@
+
+// Page source ---->>>> 
+
+
+class Solution {
+    int MissingNumber(int array[], int n) {
+        
+        //The formula of the sum of first n natural numbers is S=n(n+1)/2 .
+        
+        //No_ele = total_no_of_elements_expected
+        //total_sum = sum_total_no_of_elements_expected
+        
+        int No_ele = n; // n = array.length + 1
+        int total_sum = No_ele *(No_ele + 1)/2;
+        
+        int sum = 0;
+        for(int i = 0 ; i < array.length ; i++){
+            sum = sum + array[i];
+        }
+        return (total_sum - sum);
+    }
+}
