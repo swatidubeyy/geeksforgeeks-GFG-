@@ -1,0 +1,13 @@
+// page source ------>>>> https://practice.geeksforgeeks.org/problems/binary-search-1587115620/1/?page=1&curated[]=1&sortBy=submissions#
+
+
+class Solution {
+    int binarysearch(int arr[], int n, int k) {
+        for(int i = 0 ; i < n ; i++){
+            if(arr[i] == k){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
