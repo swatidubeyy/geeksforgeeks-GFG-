@@ -1,0 +1,63 @@
+// Page source ------>>>>>>>> https://practice.geeksforgeeks.org/problems/reverse-array-in-groups0255/1/?page=1&difficulty[]=-1&category[]=Arrays&sortBy=submissions#
+
+
+**********************************************************************************Method 1****************************************************************************
+
+class Solution {
+    //Function to reverse every sub-array group of size k.
+    void swap(ArrayList<Integer> arr , int lo , int hi){
+        while(lo < hi){
+            Collections.swap(arr , lo , hi);
+            lo++;
+            hi--;
+        }
+    }
+    void reverseInGroups(ArrayList<Integer> arr, int n, int k) {
+        int i ;
+        for(i = 0 ; i+k < n ; i += k){
+            int l = i;
+            int r = i + k - 1;
+            swap(arr , l , r);
+        }
+        if(i + k != n){
+            swap(arr , i , n-1);
+        }
+    }
+}
+
+
+**********************************************************************************Method 2****************************************************************************
+
+
+class Solution {
+    //Function to reverse every sub-array group of size k.
+    void swap(int[] arr , int lo , int hi){
+        while(lo < hi){
+            int temp = arr[lo];
+            arr[lo] = arr[hi];
+            arr[hi] = temp;
+            lo++;
+            hi--;
+        }
+    }
+    void reverseInGroups(ArrayList<Integer> arr, int n, int k) {
+        int []narr = new int[n];
+        
+        for(int i =  0 ; i < n ; i++){
+            narr[i] = arr.get(i);
+        }
+        
+        for(int i = 0 ; i < n ; i += k){
+            int l = i;
+            int r = Math.min(i+k-1 , n-1);
+            swap(narr , l , r);
+        }
+        arr.clear();
+        
+        for(int i = 0 ; i < n ; i++){
+            arr.add(narr[i]);
+        }
+    }
+}
+
+
