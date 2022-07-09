@@ -1,0 +1,15 @@
+// page source --->>>> https://practice.geeksforgeeks.org/problems/remove-duplicates3034/1/?page=4&curated[]=1&sortBy=submissions#
+
+
+class Solution {
+    String removeDups(String S) {
+        String str = "";
+        for(int i = 0 ; i < S.length() ; i++){
+            char ch = S.charAt(i);
+            if(str.indexOf(ch) == -1){
+                str += ch;
+            }    
+        }
+        return str;
+    }
+}
