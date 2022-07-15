@@ -1,0 +1,33 @@
+// page source --->>> https://practice.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1/?page=1&status[]=solved&category[]=Arrays&sortBy=submissions#
+
+
+
+
+class Solution
+{
+    public static void sort012(int arr[], int n)
+    {
+        int cz = 0 , co = 0 , ct = 0;
+        for(int i = 0 ; i < n ; i++){
+            if(arr[i] == 0){
+                cz++;
+            }else if(arr[i] == 1){
+                co++;
+            }else{
+                ct++;
+            }
+        }
+        
+        for(int i = 0 ; i < n ; i++){
+            if(cz > 0){
+                arr[i] = 0;
+                cz--;
+            }else if(co > 0){
+                arr[i] = 1;
+                co--;
+            }else {
+                arr[i] = 2;
+            }
+        }
+    }
+}
