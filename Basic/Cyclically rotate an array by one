@@ -1,0 +1,18 @@
+// page source --->>> https://practice.geeksforgeeks.org/problems/cyclically-rotate-an-array-by-one2614/1?page=1&difficulty[]=-1&status[]=unsolved&category[]=Arrays&sortBy=submissions
+
+
+class Compute {
+    
+    public static void swap(int arr[] , int i , int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
+    public void rotate(int arr[], int n)
+    {
+        for(int i = n-1 ; i >= 1 ; i--){
+            swap(arr , i , i-1);
+        }  
+    }
+}
