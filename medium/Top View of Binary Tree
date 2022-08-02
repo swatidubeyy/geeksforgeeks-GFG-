@@ -1,0 +1,61 @@
+// page source --->>>> https://practice.geeksforgeeks.org/problems/top-view-of-binary-tree/1
+
+
+
+
+class Solution
+{
+    public static class Pair{
+        Node node;
+        int vl;
+        
+        Pair(Node node , int vl){
+            this.node = node;
+            this.vl = vl;
+        }
+    }
+    //Function to return a list of nodes visible from the top view 
+    //from left to right in Binary Tree.
+    static ArrayList<Integer> topView(Node root)
+    {
+        HashMap<Integer , Node> hm = new HashMap<>();
+        Queue<Pair> mq = new LinkedList<>();
+        mq.add(new Pair(root , 0));
+        int ll = 0, rl = 0;
+        
+        while(mq.size() > 0){
+            Pair temp = mq.remove();
+            
+            if(temp.vl > rl){
+                rl = temp.vl;
+            }
+            if(temp.vl < ll){
+                ll = temp.vl;
+            }
+            
+            if(hm.containsKey(temp.vl) == false){
+                hm.put(temp.vl , temp.node);    
+            }
+            
+            if(temp.node.left != null){
+                Pair ln = new Pair(temp.node.left , temp.vl - 1);
+                mq.add(ln);
+            }
+            
+            if(temp.node.right != null){
+                Pair rn = new Pair(temp.node.right , temp.vl + 1);
+                mq.add(rn);
+            }
+        }
+        
+        ArrayList<Integer> al = new ArrayList<>();
+        
+        for(int i = ll ; i <= rl ; i++){
+            al.add(hm.get(i).data);
+        }
+        
+        return al;
+    }
+}
+
+
