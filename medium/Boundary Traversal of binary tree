@@ -1,0 +1,82 @@
+// page souce ----->>>> https://practice.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1
+
+
+
+//User function Template for Java
+
+// class Node  
+// { 
+//     int data; 
+//     Node left, right; 
+   
+//     public Node(int d)  
+//     { 
+//         data = d; 
+//         left = right = null; 
+//     } 
+// }
+
+class Solution
+{
+    void leftBoundary(Node node , ArrayList<Integer> retList){
+        if(node == null){
+            return;
+        }    
+        
+        if(node.left != null || node.right != null){
+            retList.add(node.data);
+        }
+        if(node.left != null){
+            leftBoundary(node.left , retList);
+        }else if(node.right != null){
+            leftBoundary(node.right , retList);
+        }
+    }
+    
+    void leaveBoundary(Node node , ArrayList<Integer> retList){
+        if(node == null){
+            return;
+        }
+        
+        leaveBoundary(node.left , retList);
+        
+        if(node.left == null && node.right == null){
+            retList.add(node.data);
+        }
+        
+        leaveBoundary(node.right , retList);
+    }
+    
+    void rightBoundary(Node node , ArrayList<Integer> retList){
+        if(node == null){
+            return;
+        }    
+        
+        if(node.right != null){
+            rightBoundary(node.right , retList);
+        }else if(node.left != null){
+            rightBoundary(node.left , retList);
+        }
+        
+        if(node.left != null || node.right != null){
+            retList.add(node.data);
+        }
+    }
+    
+	ArrayList <Integer> boundary(Node node)
+	{
+	    
+	    ArrayList<Integer> retList = new ArrayList<>();
+	    
+	    retList.add(node.data);
+	    
+	    leftBoundary(node.left , retList);
+	    
+	    leaveBoundary(node.left , retList);
+	    leaveBoundary(node.right , retList);
+	    
+	    rightBoundary(node.right , retList);
+	    
+	    return retList;
+	}
+}
