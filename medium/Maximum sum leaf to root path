@@ -1,0 +1,24 @@
+//Source page ---->>>> https://practice.geeksforgeeks.org/problems/maximum-sum-leaf-to-root-path/1
+
+
+class Solution
+{
+    public static int maxPathSum(Node root)
+    {
+        if(root.left != null && root.right != null){
+            int lh = maxPathSum(root.left);
+            int rh = maxPathSum(root.right);
+            int maxnode = Math.max(lh , rh) + root.data;
+            return maxnode;    
+        }else if(root.left != null){
+            int mn = maxPathSum(root.left);
+            return mn + root.data;    
+        }else if(root.right != null){
+            int mn = maxPathSum(root.right);
+            return mn+root.data;
+        }else{
+            return root.data;
+        }
+        
+    }
+}
