@@ -1,0 +1,36 @@
+//page source---->>>>>https://practice.geeksforgeeks.org/problems/maximum-path-sum/1
+
+
+class Solution
+{
+    int max = Integer.MIN_VALUE;
+    int maxPathSum(Node root)
+    { 
+        max = Integer.MIN_VALUE;
+        if(root.left != null && root.right != null){
+            int val = helper(root);
+            return max;
+        }else{
+            int val = helper(root);
+            return Math.max(val , max);
+        }
+    } 
+    int helper(Node node){
+        if(node.left != null && node.right != null){
+            int left = helper(node.left);
+            int right = helper(node.right);
+            
+            max = Math.max(left+right+node.data , max);
+            
+            return Math.max(left , right) + node.data;
+        }else if(node.left != null){
+            int left = helper(node.left);
+            return left + node.data;    
+        }else if(node.right != null){
+            int right = helper(node.right);
+            return right + node.data;
+        }else{
+            return node.data;
+        }
+    }
+}
