@@ -1,0 +1,23 @@
+// page source --->>> https://practice.geeksforgeeks.org/problems/image-multiplication0627/1
+
+
+
+class Solution {
+    long mod = 1000000007;
+    long ans = 0L;
+    public long imgMultiply(Node root)
+    {
+       ans = (root.data*root.data) % mod;
+       helper(root.left , root.right);
+       return ans;
+    }
+    public void helper(Node node1 , Node node2){
+        if(node1 == null || node2 == null){
+            return;
+        }
+        ans = (ans + node1.data * node2.data) % mod;
+        
+        helper(node1.left , node2.right);
+        helper(node1.right , node2.left);
+    }
+}
