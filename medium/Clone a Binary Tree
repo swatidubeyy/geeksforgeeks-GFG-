@@ -1,0 +1,50 @@
+//page source --->>> https://practice.geeksforgeeks.org/problems/clone-a-binary-tree/1
+
+
+
+
+class Solution{
+    public Tree cloneTree(Tree tree){
+       createDup(tree);
+       setRandom(tree);
+       Tree ans = removeDup(tree);
+       return ans;
+    }
+    
+    public void createDup(Tree node){
+        if(node == null){
+            return;
+        }
+        createDup(node.left);
+        createDup(node.right);
+        
+        Tree dup = new Tree(node.data);
+        dup.left = node.left;
+        dup.right = null;
+        node.left = dup;
+    }
+    
+    public void setRandom(Tree node){
+        if(node == null){
+            return;
+        }
+        setRandom(node.left.left);
+        setRandom(node.right);
+        if(node.random != null)
+            node.left.random = node.random.left;
+    }
+    
+    public Tree removeDup(Tree node){
+        if(node == null){
+            return null;
+        }
+        Tree ldup = removeDup(node.left.left);
+        Tree rdup = removeDup(node.right);
+        
+        Tree dup = node.left;
+        node.left = node.left.left;
+        dup.left = ldup;
+        dup.right = rdup;
+        return dup;
+    }
+}
