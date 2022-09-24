@@ -1,0 +1,25 @@
+// page source --->>>> https://practice.geeksforgeeks.org/problems/reverse-words-in-a-given-string5459/1?page=1&category[]=Strings&sortBy=submissions
+
+
+class Solution 
+{
+    //Function to reverse words in a given string.
+    String reverseWords(String S)
+    {
+        String ans = "";
+        
+        String ns = S.replace("." , " ");
+        
+        String arr[] = ns.split(" ");
+        
+        for(int i = arr.length - 1 ; i >= 0 ; i--){
+            if(i > 0){
+                ans += arr[i];
+                ans += ".";
+            }else{
+                ans += arr[i];
+            }    
+        }
+        return ans;
+    }
+}
